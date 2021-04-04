@@ -1,0 +1,26 @@
+
+
+<form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)" class="regForm">
+  <h2 >Ingrese los siguientes datos matricularse como alumno</h2>
+
+  <label>Nombre</label><br>
+  <input type="text" id="First_name" class="form-control" name="First_name" ngModel required><br>
+
+  <label>Apellido</label><br>
+  <input type="text" id="Last_name" class="form-control" name="Last_name" ngModel required><br>
+
+  <label>DNI</label><br>
+  <input type="number" id="dni" class="form-control" name="DNI" ngModel required><br>
+  <input type="hidden" id="legajo" class="form-control" name="File_number" ngModel><br>
+  <button type="submit" mat-button color="warn"  *ngIf=" !isreg disabled : enabled" >
+    Matricularse
+  </button>
+
+      <div class="row" *ngIf="isreg">
+        <h3>
+          Su número de legajo designado es: {{numLegajo}}
+        </h3>
+      </div>
+
+
+</form>

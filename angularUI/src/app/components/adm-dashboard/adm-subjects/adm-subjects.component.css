@@ -1,0 +1,17 @@
+.subjectInput{
+  width: 100%;
+  height: 80%;
+  display: table-row;
+}
+
+td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+th {
+  vertical-align: middle;
+  text-align: center;
+}
+
+

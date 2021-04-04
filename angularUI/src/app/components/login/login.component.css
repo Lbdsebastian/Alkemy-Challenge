@@ -1,0 +1,12 @@
+.loginForm{
+  margin: 1em auto;
+  width: 75%;
+  height: 75%;
+  align-content: center;
+}
+
+button{
+  width:100%;
+  margin:0 auto;
+  text-align:center;
+}

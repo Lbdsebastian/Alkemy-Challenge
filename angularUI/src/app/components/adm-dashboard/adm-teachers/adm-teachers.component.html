@@ -1,0 +1,139 @@
+
+<div class="container">
+  <!-- Tabla  -->
+  <div class="row">
+    <div class="col"><br>
+      <table class="table table-bordered">
+        <thead>
+          <tr class="info">
+            <th th scope="col"></th>
+            <th th scope="col">Nombre</th>
+            <th th scope="col">Apellido</th>
+            <th th scope="col">DNI</th>
+            <th th scope="col">Actividad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let teacher of teachers" class="success">
+            <th scope="row" *ngIf="show">{{teachers.Id}}</th>
+            <td>
+              <mat-radio-button color="warn" (click)="onSelect(teacher)">
+              </mat-radio-button>
+            </td>
+            <td>
+              {{ teacher.First_name }}
+            </td>
+            <td>
+              {{ teacher.Last_name }}
+            </td>
+            <td>
+              {{ teacher.DNI }}
+            </td>
+            <td>
+              {{ teacher.Active ? 'Activo': 'Inactivo' }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Botones área administración -->
+      <div class="col"><br>
+        <button mat-raised-button color="accent" class="AdmDashButtons" (click)="actPostCard()">
+          Agregar
+        </button>
+        |
+        <button mat-raised-button [disabled]="isDisabled" color="accent" class="AdmDashButtons" (click)="actPutCard()">
+          Modificar
+        </button>
+        |
+        <button mat-raised-button color="accent" [disabled]="isDisabled" class="AdmDashButtons" (click)="actDelCard()">
+          Eliminar
+        </button>
+        <br>
+    </div>
+  </div>
+</div>
+
+      <!-- Formulario para modificar materias -->
+      <div class="col-sm-12" *ngIf="editTeacher"><br>
+        <div class="card">
+          <div class="card-body">
+           <div class="div card-text">
+
+            <form [formGroup]="editTeacherForm"  (ngSubmit)="teacherEdit(editTeacherForm, teacher.Id)">
+
+              <div class="card-header">Nombre</div>
+              <input type="text" class="form-control" formControlName="First_name">
+
+              <div class="card-header">Apellido</div>
+              <input type="text" class="form-control" formControlName="Last_name">
+
+              <div class="card-header">DNI</div>
+              <input type="number" class="form-control" formControlName="DNI" maxlength="8">
+
+              <div class="card-header">Actividad</div>
+              <select class="custom-select"  name="Active" formControlName="Active">
+                <option selected value="true" >Activo</option>
+                <option value="false">Inactivo</option>
+              </select><br>
+                 <!-- continuar con este form -->
+
+              <button mat-raised-button type="submit">Agregar</button>
+              |
+              <button mat-raised-button (click)="actPostCard()">Cancelar</button>
+             </form>
+           </div>
+          </div>
+        </div>
+      </div>
+
+
+        <!-- Formulario para agregar materias -->
+      <div class="col-sm-12" *ngIf="teacherCard"><br>
+        <div class="card">
+          <div class="card-body">
+           <div class="div card-text">
+
+             <form [formGroup]="teacherForm"  (ngSubmit)="onSubmit(teacherForm)">
+
+              <div class="card-header">Nombre</div>
+              <input type="text" class="form-control" formControlName="First_name">
+
+              <div class="card-header">Apellido</div>
+              <input type="text" class="form-control" formControlName="Last_name">
+
+              <div class="card-header">DNI</div>
+              <input type="number" class="form-control" formControlName="DNI">
+
+              <button mat-raised-button type="submit">Agregar</button>
+              |
+              <button mat-raised-button (click)="actPostCard()">Cancelar</button>
+             </form>
+           </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Eliminar materia -->
+      <div class="col-sm-12" *ngIf="deleteTeacher"><br>
+            <div class="alert alert-danger delAlert">
+              <p>
+                Está seguro que quiere eliminar <strong>{{ teacher.First_name }}</strong> ?
+                <!-- Iconos -->
+                <button mat-fab color="warn" (click)="delTeacher(teacher.Id)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                  </svg>
+                </button>
+                |
+                <button mat-fab color="primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </button>
+              </p>
+            </div>
+      </div>
+    </div>
+

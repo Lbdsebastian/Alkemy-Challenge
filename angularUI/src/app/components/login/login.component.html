@@ -1,0 +1,19 @@
+
+
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="loginForm">
+<h2>Ingrese los datos solicitados</h2>
+  <label>DNI</label><br>
+  <input type="number" id="dni" class="form-control" name="DNI" ngModel required><br>
+
+  <label>Número de legajo</label><br>
+  <input type="password" id="legajo" class="form-control" name="File_number" ngModel required>
+
+  <div class="form-check">
+    <input class="form-check-input form-control" type="checkbox" value="" id="flexCheckDefault" name="isAdmin" ngModel (click)="adminSwap()">
+    <label class="form-check-label" for="flexCheckDefault">
+       Soy administrador
+    </label>
+  </div>
+
+  <button mat-raised-button color="warn" >Ingresar</button>
+</form>
