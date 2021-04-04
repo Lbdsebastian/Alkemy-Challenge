@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="Alkemy_ChallengeModel.Students" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Alkemy_ChallengeModel.Subjects" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Alkemy_ChallengeModel.Teachers" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="Alkemy_ChallengeModel.Students_Subject" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -48,5 +48,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="Students_Subject" TypeName="Alkemy_ChallengeModel.Students_Subject" StoreEntitySet="Students_Subject">
+      <EndProperty Name="Subjects">
+        <ScalarProperty Name="Id" ColumnName="Subject_Id" />
+      </EndProperty>
+      <EndProperty Name="Students">
+        <ScalarProperty Name="Id" ColumnName="Student_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

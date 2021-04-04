@@ -22,6 +22,14 @@
     <Property Name="File_number" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Token" Type="varchar" MaxLength="250" />
   </EntityType>
+  <EntityType Name="Students_Subject">
+    <Key>
+      <PropertyRef Name="Student_Id" />
+      <PropertyRef Name="Subject_Id" />
+    </Key>
+    <Property Name="Student_Id" Type="int" Nullable="false" />
+    <Property Name="Subject_Id" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Subjects">
     <Key>
       <PropertyRef Name="Id" />
@@ -43,10 +51,43 @@
     <Property Name="DNI" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Student_ID">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="Students_Subject" Type="Self.Students_Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Students_Subject">
+        <PropertyRef Name="Student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_ID">
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="Students_Subject" Type="Self.Students_Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Students_Subject">
+        <PropertyRef Name="Subject_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Alkemy_ChallengeModelStoreContainer">
     <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students_Subject" EntityType="Self.Students_Subject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Student_ID" Association="Self.FK_Student_ID">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Students_Subject" EntitySet="Students_Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_ID" Association="Self.FK_Subject_ID">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Students_Subject" EntitySet="Students_Subject" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

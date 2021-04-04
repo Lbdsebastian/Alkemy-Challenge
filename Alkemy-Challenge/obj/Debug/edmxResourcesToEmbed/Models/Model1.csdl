@@ -21,6 +21,7 @@
     <Property Name="DNI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="File_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Token" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="true" />
+    <NavigationProperty Name="Subjects" Relationship="Alkemy_ChallengeModel.Students_Subject" FromRole="Students" ToRole="Subjects" />
   </EntityType>
   <EntityType Name="Subjects">
     <Key>
@@ -32,6 +33,7 @@
     <Property Name="Time_end" Type="Int32" Nullable="false" />
     <Property Name="Teacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Maximum_quota" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="Alkemy_ChallengeModel.Students_Subject" FromRole="Subjects" ToRole="Students" />
   </EntityType>
   <EntityType Name="Teachers">
     <Key>
@@ -48,5 +50,13 @@
     <EntitySet Name="Students" EntityType="Self.Students" />
     <EntitySet Name="Subjects" EntityType="Self.Subjects" />
     <EntitySet Name="Teachers" EntityType="Self.Teachers" />
+    <AssociationSet Name="Students_Subject" Association="Alkemy_ChallengeModel.Students_Subject">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Subjects" EntitySet="Subjects" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="Students_Subject">
+    <End Type="Alkemy_ChallengeModel.Students" Role="Students" Multiplicity="*" />
+    <End Type="Alkemy_ChallengeModel.Subjects" Role="Subjects" Multiplicity="*" />
+  </Association>
 </Schema>

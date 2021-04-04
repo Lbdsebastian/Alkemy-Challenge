@@ -27,6 +27,14 @@
           <Property Name="File_number" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Token" Type="varchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="Students_Subject">
+          <Key>
+            <PropertyRef Name="Student_Id" />
+            <PropertyRef Name="Subject_Id" />
+          </Key>
+          <Property Name="Student_Id" Type="int" Nullable="false" />
+          <Property Name="Subject_Id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Subjects">
           <Key>
             <PropertyRef Name="Id" />
@@ -48,11 +56,44 @@
           <Property Name="DNI" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Student_ID">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="Students_Subject" Type="Self.Students_Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students_Subject">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_ID">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+          <End Role="Students_Subject" Type="Self.Students_Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students_Subject">
+              <PropertyRef Name="Subject_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Alkemy_ChallengeModelStoreContainer">
           <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students_Subject" EntityType="Self.Students_Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Student_ID" Association="Self.FK_Student_ID">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Students_Subject" EntitySet="Students_Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_ID" Association="Self.FK_Subject_ID">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Students_Subject" EntitySet="Students_Subject" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -79,6 +120,7 @@
           <Property Name="DNI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="File_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Token" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="true" />
+          <NavigationProperty Name="Subjects" Relationship="Alkemy_ChallengeModel.Students_Subject" FromRole="Students" ToRole="Subjects" />
         </EntityType>
         <EntityType Name="Subjects">
           <Key>
@@ -90,6 +132,7 @@
           <Property Name="Time_end" Type="Int32" Nullable="false" />
           <Property Name="Teacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Maximum_quota" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Students" Relationship="Alkemy_ChallengeModel.Students_Subject" FromRole="Subjects" ToRole="Students" />
         </EntityType>
         <EntityType Name="Teachers">
           <Key>
@@ -106,7 +149,15 @@
           <EntitySet Name="Students" EntityType="Self.Students" />
           <EntitySet Name="Subjects" EntityType="Self.Subjects" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" />
+          <AssociationSet Name="Students_Subject" Association="Alkemy_ChallengeModel.Students_Subject">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Subjects" EntitySet="Subjects" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="Students_Subject">
+          <End Type="Alkemy_ChallengeModel.Students" Role="Students" Multiplicity="*" />
+          <End Type="Alkemy_ChallengeModel.Subjects" Role="Subjects" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -160,6 +211,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="Students_Subject" TypeName="Alkemy_ChallengeModel.Students_Subject" StoreEntitySet="Students_Subject">
+            <EndProperty Name="Subjects">
+              <ScalarProperty Name="Id" ColumnName="Subject_Id" />
+            </EndProperty>
+            <EndProperty Name="Students">
+              <ScalarProperty Name="Id" ColumnName="Student_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

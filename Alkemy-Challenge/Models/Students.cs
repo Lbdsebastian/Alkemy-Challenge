@@ -14,11 +14,20 @@ namespace Alkemy_Challenge.Models
     
     public partial class Students
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Students()
+        {
+            this.Subjects = new HashSet<Subjects>();
+        }
+    
         public int Id { get; set; }
         public string First_name { get; set; }
         public string Last_name { get; set; }
         public string DNI { get; set; }
         public string File_number { get; set; }
         public string Token { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Subjects> Subjects { get; set; }
     }
 }
