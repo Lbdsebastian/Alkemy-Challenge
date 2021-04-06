@@ -197,8 +197,8 @@ D:\Programación\Full Stack\Alkemy\Alkemy-Challenge\bin\es\System.Web.Razor.reso
 D:\Programación\Full Stack\Alkemy\Alkemy-Challenge\bin\es\System.Web.WebPages.resources.dll
 D:\Programación\Full Stack\Alkemy\Alkemy-Challenge\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\Programación\Full Stack\Alkemy\Alkemy-Challenge\bin\es\System.Web.WebPages.Razor.resources.dll
-D:\Programación\Full Stack\Alkemy\Alkemy-Challenge\obj\Debug\Alkemy-Challenge.csprojAssemblyReference.cache
 D:\Programación\Full Stack\Alkemy\Alkemy-Challenge\obj\Debug\Alkemy-Challenge.csproj.CoreCompileInputs.cache
 D:\Programación\Full Stack\Alkemy\Alkemy-Challenge\obj\Debug\Alkemy-Challenge.csproj.CopyComplete
 D:\Programación\Full Stack\Alkemy\Alkemy-Challenge\obj\Debug\Alkemy-Challenge.dll
 D:\Programación\Full Stack\Alkemy\Alkemy-Challenge\obj\Debug\Alkemy-Challenge.pdb
+D:\Programación\Full Stack\Alkemy\Alkemy-Challenge\obj\Debug\Alkemy-Challenge.csprojAssemblyReference.cache

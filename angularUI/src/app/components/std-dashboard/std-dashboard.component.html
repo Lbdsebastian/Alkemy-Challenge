@@ -1,10 +1,11 @@
-<h2>Bienvenido {{ student }} </h2>
+
+ <h2>Bienvenido <strong>{{ studentInfo.First_name }}</strong></h2>
 
 <mat-divider></mat-divider><br>
 <div class="container">
   <div class="row">
     <div class="col">
-      <button mat-raised-button color="primary" >
+      <button mat-raised-button color="primary" (click)="showSubjects()">
         Administrar Materias
       </button>
     </div>
@@ -12,6 +13,95 @@
 </div>
 <br><mat-divider></mat-divider>
 
- <!-- 1-  Poder ver las materias que existen
- 2- Poder ver la descripcion de las materias
- 3-  poder inscribirse a las materias que existen -->
+<div class="container" *ngIf="showSubj">
+  <!-- Tabla  -->
+  <div class="row">
+    <div class="col"><br>
+      <table class="table table-bordered">
+        <thead>
+          <tr class="info">
+            <th th scope="col"></th>
+            <th th scope="col">Nombre</th>
+            <th th scope="col">Hs. Inicio</th>
+            <th th scope="col">Hs. Fin</th>
+            <th th scope="col">Profesor</th>
+            <th th scope="col">Cupos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let subject of subjects" class="success">
+            <th scope="row" *ngIf="show">{{subject.Id}}</th>
+            <td>
+              <mat-radio-button color="warn" (click)="onSelect(subject)">
+              </mat-radio-button>
+            </td>
+            <td>
+              {{ subject.Name }}
+            </td>
+            <td>
+              {{ subject.Time_start }}
+            </td>
+            <td>
+              {{ subject.Time_end }}
+            </td>
+            <td>
+              {{ subject.Teacher}}
+            </td>
+            <td>
+              {{ subject.Maximum_quota}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <br><mat-divider>
+    </mat-divider>
+  <div class="col"><br>
+    <button mat-raised-button color="accent" class="AdmDashButtons" (click)="regToSubject(subject.Id, studentInfo.Id)">
+      Inscribir
+    </button>
+    <button mat-raised-button color="accent" class="AdmDashButtons" (click)="getStudentListOfSubjects(studentInfo.Id)">
+      Ver mis inscripciones
+    </button>
+
+    <br><br><mat-divider></mat-divider>
+
+
+    <!-- materias a las que esta anotado el alumno -->
+
+    <div class="container" *ngIf="showStdSubjs">
+      <h2>Materias a las que estas inscripto: </h2>
+      <!-- Tabla  -->
+      <div class="row">
+        <div class="col"><br>
+          <table class="table table-bordered">
+            <thead>
+              <tr class="info">
+                <th th scope="col"></th>
+                <th th scope="col">Nombre</th>
+                <th th scope="col">Horario</th>
+                <th th scope="col">Profesor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let subject of studentListofSubj" class="success">
+                <th scope="row" *ngIf="show">{{subject.Id}}</th>
+                <td>
+                  <mat-radio-button color="warn" (click)="onSelect(subject)">
+                  </mat-radio-button>
+                </td>
+                <td>
+                  {{ subject.Name }}
+                </td>
+                <td>
+                  {{ subject.Time_start }}
+                </td>
+                <td>
+                  {{ subject.Teacher}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+
+

@@ -13,6 +13,7 @@ namespace Alkemy_Challenge.Controllers.Alkemy_Challenge
         Alkemy_ChallengeEntities db = new Alkemy_ChallengeEntities();
 
         // GET
+
         public IHttpActionResult GetTeachers()
         {
             var consulta =  db.Teachers.ToList();

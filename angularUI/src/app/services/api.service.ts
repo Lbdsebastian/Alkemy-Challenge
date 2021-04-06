@@ -21,8 +21,11 @@ export class ApiService {
   // obtener alumnos
   StudentUrl = 'https://localhost:44366/api/students/';
 
-  //administrar alumnos
-  AdmStudentUrl = '';
+  //anotar a materia
+  regToSubjUrl = 'https://localhost:44366/api/students/regtosubj';
+
+  // lista de materias a las que esta inscripto un alumno
+  student_subjectUrl  = 'https://localhost:44366/api/students/showsubject';
 
 //obtener profesores
 teachersUrl = 'https://localhost:44366/api/teachers/';

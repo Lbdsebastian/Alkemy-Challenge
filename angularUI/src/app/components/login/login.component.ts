@@ -21,12 +21,11 @@ export class LoginComponent implements OnInit {
 
   }
 
-  // crear dashboard de estudiante
-  // logica de los logins por separado
-  // crear vistas de las opciones de admin y estudiantes
+
   isAdmin: boolean = false;
   Respuesta: any;
   AdmLogged: boolean = false;
+  test: any;
 
   onSubmit(form: NgForm){
     if (this.isAdmin){
@@ -48,7 +47,7 @@ export class LoginComponent implements OnInit {
           this.Respuesta = resp;
           if  (this.Respuesta.Resultado){
             this.router.navigate(['StdDashboard']);
-
+            this.shared.setStudentInfo(form.value);
           }
         })
     }

@@ -12,11 +12,15 @@ export class StudentsService {
   constructor(private url: ApiService, private http: HttpClient) { }
 
   getStudents(){
-    return this.http.get(this.url.teachersUrl);
+    return this.http.get(this.url.StudentUrl);
   }
 
   getStudent(id: number){
-    return this.http.get(this.url.teachersUrl + '?Id=' + id)
+    return this.http.get(this.url.StudentUrl + '?Id=' + id)
+  }
+
+  getStudentByDNI(dni: string){
+    return this.http.get(this.url.StudentUrl + 'getByDni/?dni=' + dni)
   }
 
   postStudent(obj: Student){
@@ -45,5 +49,11 @@ export class StudentsService {
     return this.http.delete(this.url.adminTeachersUrl + '?Id=' + id)
   }
 
+ regStudentToSubj(subjID: number, studentID: number ){
+   return this.http.post(this.url.regToSubjUrl + '?subjectID=' + subjID + '&studentID=' + studentID, {});
+ }
 
+  getListofSubjects(studentID: number){
+    return this.http.get(this.url.student_subjectUrl + '?id=' + studentID)
+ }
 }

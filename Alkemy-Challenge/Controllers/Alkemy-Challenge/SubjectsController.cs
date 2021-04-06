@@ -14,6 +14,7 @@ namespace Alkemy_Challenge.Controllers.Alkemy_Challenge
         Alkemy_ChallengeEntities db = new Alkemy_ChallengeEntities();
 
         // Obtener listado de todas las materias
+
         public IHttpActionResult GetSubjects()
         {
             var sbj = db.Subjects.ToList();
