@@ -80,8 +80,10 @@ namespace Alkemy_Challenge.Controllers.Alkemy_Challenge
             {
                 var regSubj = db.Subjects.Where(s => s.Id == id).FirstOrDefault();
                 db.Subjects.Remove(regSubj);
+                
                 db.SaveChanges();
                 return Ok(regSubj);
+                // logica para eliminar de la relacion student_subject
             }
             else
             {

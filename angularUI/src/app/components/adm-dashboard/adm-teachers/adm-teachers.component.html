@@ -54,7 +54,7 @@
   </div>
 </div>
 
-      <!-- Formulario para modificar materias -->
+      <!-- Formulario para modificar profesores -->
       <div class="col-sm-12" *ngIf="editTeacher"><br>
         <div class="card">
           <div class="card-body">
@@ -63,22 +63,21 @@
             <form [formGroup]="editTeacherForm"  (ngSubmit)="teacherEdit(editTeacherForm, teacher.Id)">
 
               <div class="card-header">Nombre</div>
-              <input type="text" class="form-control" formControlName="First_name">
+              <input type="text" class="form-control" formControlName="First_name" required>
 
               <div class="card-header">Apellido</div>
-              <input type="text" class="form-control" formControlName="Last_name">
+              <input type="text" class="form-control" formControlName="Last_name" required>
 
               <div class="card-header">DNI</div>
-              <input type="number" class="form-control" formControlName="DNI" maxlength="8">
+              <input type="number" class="form-control" formControlName="DNI" maxlength="8" required>
 
               <div class="card-header">Actividad</div>
-              <select class="custom-select"  name="Active" formControlName="Active">
+              <select class="custom-select"  name="Active" formControlName="Active" required>
                 <option selected value="true" >Activo</option>
                 <option value="false">Inactivo</option>
               </select><br>
-                 <!-- continuar con este form -->
 
-              <button mat-raised-button type="submit">Agregar</button>
+              <button mat-raised-button type="submit" [disabled]="!editTeacherForm.valid">Agregar</button>
               |
               <button mat-raised-button (click)="actPostCard()">Cancelar</button>
              </form>
@@ -88,24 +87,24 @@
       </div>
 
 
-        <!-- Formulario para agregar materias -->
+        <!-- Formulario para agregar profesores -->
       <div class="col-sm-12" *ngIf="teacherCard"><br>
         <div class="card">
           <div class="card-body">
            <div class="div card-text">
 
-             <form [formGroup]="teacherForm"  (ngSubmit)="onSubmit(teacherForm)">
+             <form [formGroup]="teacherForm"  (ngSubmit)="onSubmit(teacherForm)" required>
 
               <div class="card-header">Nombre</div>
-              <input type="text" class="form-control" formControlName="First_name">
+              <input type="text" class="form-control" formControlName="First_name" required>
 
               <div class="card-header">Apellido</div>
-              <input type="text" class="form-control" formControlName="Last_name">
+              <input type="text" class="form-control" formControlName="Last_name" required>
 
               <div class="card-header">DNI</div>
-              <input type="number" class="form-control" formControlName="DNI">
+              <input type="number" class="form-control" formControlName="DNI" required>
 
-              <button mat-raised-button type="submit">Agregar</button>
+              <button mat-raised-button type="submit" [disabled]="!teacherForm.valid">Agregar</button>
               |
               <button mat-raised-button (click)="actPostCard()">Cancelar</button>
              </form>

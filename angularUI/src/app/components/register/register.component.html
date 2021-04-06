@@ -1,26 +1,24 @@
 
 
-<form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)" class="regForm">
-  <h2 >Ingrese los siguientes datos matricularse como alumno</h2>
+<form [formGroup]="regForm" (ngSubmit)="onSubmit(regForm)" class="regForm">
+  <h2 > <u>Ingrese los siguientes datos matricularse como alumno</u> </h2>
 
   <label>Nombre</label><br>
-  <input type="text" id="First_name" class="form-control" name="First_name" ngModel required><br>
+  <input type="text" id="First_name" class="form-control" formControlName="First_name" ><br>
+
 
   <label>Apellido</label><br>
-  <input type="text" id="Last_name" class="form-control" name="Last_name" ngModel required><br>
+  <input type="text" id="Last_name" class="form-control" formControlName="Last_name" ><br>
 
   <label>DNI</label><br>
-  <input type="number" id="dni" class="form-control" name="DNI" ngModel required><br>
-  <input type="hidden" id="legajo" class="form-control" name="File_number" ngModel><br>
-  <button type="submit" mat-button color="warn"  *ngIf=" !isreg disabled : enabled" >
+  <input type="number" id="dni" class="form-control" formControlName="DNI" ><br>
+
+  <input type="hidden" id="legajo" class="form-control" formControlName="File_number" ><br>
+  <button  type="submit" mat-raised-button color="warn" [disabled]="!regForm.valid">
     Matricularse
   </button>
 
-      <div class="row" *ngIf="isreg">
-        <h3>
-          Su número de legajo designado es: {{numLegajo}}
-        </h3>
-      </div>
-
-
+    <div class="alert alert-success" *ngIf="isreg">
+      Su número de legajo designado es: <strong>{{numLegajo}}</strong>
+    </div>
 </form>

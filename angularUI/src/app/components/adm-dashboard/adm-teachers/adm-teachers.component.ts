@@ -28,9 +28,9 @@ export class AdmTeachersComponent implements OnInit {
 
 
   teacherForm = new FormGroup({
-    First_name: new FormControl('', Validators.required),
-    Last_name: new FormControl('', Validators.required),
-    DNI: new FormControl( '', Validators.required)
+    First_name: new FormControl(''),
+    Last_name: new FormControl(''),
+    DNI: new FormControl( '')
   });
 
   editTeacherForm = new FormGroup({});

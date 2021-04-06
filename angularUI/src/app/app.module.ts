@@ -1,3 +1,4 @@
+import { AuthGuardService } from './services/login/guard/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 
@@ -29,8 +30,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 const routes = [
 { path: '', component: HomeComponent },
 { path: 'register', component: RegisterComponent },
-{ path: 'AdmDashboard', component: AdmDashboardComponent },
-{ path: 'StdDashboard', component: StdDashboardComponent }
+{ path: 'AdmDashboard', canActivate: [AuthGuardService], component: AdmDashboardComponent },
+{ path: 'StdDashboard', component: StdDashboardComponent } // activar guard sin romper todo
 ];
 
 

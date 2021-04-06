@@ -4,3 +4,15 @@
   height: 75%;
   align-content: center;
 }
+button{
+  width:100%;
+  margin:0 auto;
+  text-align:center;
+}
+
+input.ng-invalid{
+  border-left: 5px solid red;
+}
+input.ng-valid{
+  border-left: 5px solid rgb(45, 230, 45);
+}

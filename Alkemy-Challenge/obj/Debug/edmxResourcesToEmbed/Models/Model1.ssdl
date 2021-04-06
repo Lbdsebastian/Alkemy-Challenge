@@ -52,7 +52,9 @@
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_Student_ID">
-    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Students_Subject" Type="Self.Students_Subject" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Students">
@@ -64,7 +66,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Subject_ID">
-    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Students_Subject" Type="Self.Students_Subject" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Subjects">

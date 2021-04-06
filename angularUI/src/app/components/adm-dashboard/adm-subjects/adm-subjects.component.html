@@ -67,22 +67,28 @@
              <form [formGroup]="editSubjectForm" class="subjectForm" (ngSubmit)="putSubject(editSubjectForm, subject.Id)">
 
               <div class="card-header">Nombre</div>
-              <input type="text" class="form-control subjectInput" formControlName="Name">
+              <input type="text" class="form-control subjectInput" formControlName="Name" required>
 
               <div class="card-header">Hs. Inicio</div>
-              <input type="number" class="form-control subjectInput" formControlName="Time_start">
+              <input type="number" class="form-control subjectInput" formControlName="Time_start" required>
 
               <div class="card-header">Hs. Fin</div>
-              <input type="number" class="form-control subjectInput" formControlName="Time_end">
+              <input type="number" class="form-control subjectInput" formControlName="Time_end" required>
 
               <div class="card-header">Profesor</div>
-              <input type="text" class="form-control subjectInput" formControlName="Teacher">
+              <select class="form-control subjectInput" formControlName="Teacher" required>
+
+                <option *ngFor="let teacher of availableTeachers">
+                  {{ teacher.First_name }}
+                </option>
+
+              </select>
 
               <div class="card-header">Cupos</div>
               <input type="number" class="form-control subjectInput" formControlName="Maximum_quota">
               <br>
 
-              <button mat-raised-button type="submit">Modificar</button>
+              <button mat-raised-button type="submit" [disabled]="!editSubjectForm.valid">Modificar</button>
               |
               <button mat-raised-button (click)="actPutCard()">Cancelar</button>
              </form>
@@ -101,22 +107,29 @@
              <form [formGroup]="subjectForm" class="subjectForm" (ngSubmit)="onSubmit(subjectForm)">
 
               <div class="card-header">Nombre</div>
-              <input type="text" class="form-control subjectInput" formControlName="Name">
+              <input type="text" class="form-control subjectInput" formControlName="Name" required>
 
               <div class="card-header">Hs. Inicio</div>
-              <input type="number" class="form-control subjectInput" formControlName="Time_start">
+              <input type="number" class="form-control subjectInput" formControlName="Time_start" required>
 
               <div class="card-header">Hs. Fin</div>
-              <input type="number" class="form-control subjectInput" formControlName="Time_end">
+              <input type="number" class="form-control subjectInput" formControlName="Time_end" required>
+
 
               <div class="card-header">Profesor</div>
-              <input type="text" class="form-control subjectInput" formControlName="Teacher">
+              <select class="form-control subjectInput" formControlName="Teacher" required>
+
+                <option *ngFor="let teacher of availableTeachers">
+                  {{ teacher.First_name }}
+                </option>
+
+              </select>
 
               <div class="card-header">Cupos</div>
-              <input type="number" class="form-control subjectInput" formControlName="Maximum_quota">
+              <input type="number" class="form-control subjectInput" formControlName="Maximum_quota" required>
               <br>
 
-              <button mat-raised-button type="submit">Agregar</button>
+              <button mat-raised-button type="submit" [disabled]="!subjectForm.valid">Agregar</button>
               |
               <button mat-raised-button (click)="actPostCard()">Cancelar</button>
              </form>

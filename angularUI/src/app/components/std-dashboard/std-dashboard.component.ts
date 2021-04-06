@@ -23,7 +23,7 @@ export class StdDashboardComponent implements OnInit {
   show: boolean = false;
   isDisabled: boolean = true;
   showSubj: boolean = false;
-  showStdSubjs: boolean = true;
+  showStdSubjs: boolean = false;
   subjects: any = [];
   subject: any;
 
@@ -54,6 +54,7 @@ getStudentInfo(info: any){
 }
 
 getStudentListOfSubjects(id: number){
+  this.showStdSubjs = !this.showStdSubjs;
   this.student.getListofSubjects(id).subscribe(resp =>
     {
       this.studentListofSubj = resp;

@@ -1,3 +1,4 @@
+import { TeachersService } from './../../../services/admins/teachers/teachers.service';
 import { SubjectsService } from './../../../services/admins/subjects/subjects.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
@@ -12,12 +13,14 @@ import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angula
 })
 export class AdmSubjectsComponent implements OnInit {
 
-  constructor(private sbjService: SubjectsService) { }
+  constructor(private sbjService: SubjectsService, private teachers: TeachersService) { }
 
   ngOnInit(): void {
     this.getSubjects();
+    this.getTeachers();
   }
 
+availableTeachers: any = [];
 subjects: any = [];
 deleteSubj: boolean = false;
 editSbj: boolean = false;
@@ -32,11 +35,11 @@ editSubjectForm = new FormGroup({});
 
 // formulario para funcionalidad POST
 subjectForm = new FormGroup({
-  Name: new FormControl('', Validators.required),
-  Time_start: new FormControl('', Validators.required),
-  Time_end: new FormControl('', Validators.required),
-  Teacher: new FormControl('', Validators.required),
-  Maximum_quota: new FormControl('', Validators.required)
+  Name: new FormControl(''),
+  Time_start: new FormControl(''),
+  Time_end: new FormControl(''),
+  Teacher: new FormControl(''),
+  Maximum_quota: new FormControl('')
 })
 
 // funciones para mostrar-ocultar tarjetas
@@ -112,11 +115,14 @@ onSelect(selectedItem: any) {
     {
       this.subject = resp;
     })
-
-
 }
 
-
+getTeachers(){
+  this.teachers.getTeachers().subscribe(resp =>
+    {
+      this.availableTeachers = resp;
+    })
+}
 
 }
 
