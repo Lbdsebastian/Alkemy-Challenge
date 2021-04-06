@@ -38,7 +38,7 @@ subjectForm = new FormGroup({
   Name: new FormControl(''),
   Time_start: new FormControl(''),
   Time_end: new FormControl(''),
-  Teacher: new FormControl(''),
+  Teacher: new FormControl(),
   Maximum_quota: new FormControl('')
 })
 

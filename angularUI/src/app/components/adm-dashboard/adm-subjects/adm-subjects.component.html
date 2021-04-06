@@ -6,12 +6,12 @@
       <table class="table table-bordered">
         <thead>
           <tr class="info">
-            <th th scope="col"></th>
-            <th th scope="col">Nombre</th>
-            <th th scope="col">Hs. Inicio</th>
-            <th th scope="col">Hs. Fin</th>
-            <th th scope="col">Profesor</th>
-            <th th scope="col">Cupos</th>
+            <th th scope="col" [appSort]=subjects data-order="desc" data-name="Id"></th>
+            <th th scope="col" [appSort]=subjects data-order="desc" data-name="Name">Nombre</th>
+            <th th scope="col" [appSort]=subjects data-order="desc" data-name="Time_start">Hs. Inicio</th>
+            <th th scope="col" [appSort]=subjects data-order="desc" data-name="Time_end">Hs. Fin</th>
+            <th th scope="col" [appSort]=subjects data-order="desc" data-name="Teacher">Profesor</th>
+            <th th scope="col" [appSort]=subjects data-order="desc" data-name="Maximun_quota">Cupos</th>
           </tr>
         </thead>
         <tbody>
@@ -118,7 +118,6 @@
 
               <div class="card-header">Profesor</div>
               <select class="form-control subjectInput" formControlName="Teacher" required>
-
                 <option *ngFor="let teacher of availableTeachers">
                   {{ teacher.First_name }}
                 </option>

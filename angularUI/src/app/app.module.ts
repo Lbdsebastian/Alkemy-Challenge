@@ -25,6 +25,7 @@ import { AdmTeachersComponent } from './components/adm-dashboard/adm-teachers/ad
 import { AdmSubjectsComponent } from './components/adm-dashboard/adm-subjects/adm-subjects.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SortDirective } from './util/directive/sort.directive';
 
 
 const routes = [
@@ -46,6 +47,7 @@ const routes = [
     StdDashboardComponent,
     AdmTeachersComponent,
     AdmSubjectsComponent,
+    SortDirective,
 
 
   ],
