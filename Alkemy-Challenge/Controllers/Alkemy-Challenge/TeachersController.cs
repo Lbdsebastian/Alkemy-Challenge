@@ -21,7 +21,7 @@ namespace Alkemy_Challenge.Controllers.Alkemy_Challenge
                 var consulta = db.Teachers.ToList();
                 return Ok(consulta);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw new Exception("Ocurrió un error, intente nuevamente. Detalles del error: " + ex.Message);
