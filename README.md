@@ -1,7 +1,7 @@
-                                                                                # CHALLENGE C# - ALKEMY LABS 
+# CHALLENGE C# - ALKEMY LABS 
 
 
-Requerimientos 
+Requerimientos:
 Deberás crear una aplicación en C# utilizando el framework MVC. El objetivo es simular 
 una aplicación web donde los alumnos de una universidad puedan inscribirse a las 
 materias que desean cursar. 
