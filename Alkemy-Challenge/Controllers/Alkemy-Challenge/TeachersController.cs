@@ -16,22 +16,40 @@ namespace Alkemy_Challenge.Controllers.Alkemy_Challenge
 
         public IHttpActionResult GetTeachers()
         {
-            var consulta =  db.Teachers.ToList();
-            return Ok(consulta);
+            try
+            {
+                var consulta = db.Teachers.ToList();
+                return Ok(consulta);
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Ocurrió un error, intente nuevamente. Detalles del error: " + ex.Message);
+            }
+            
         }
         // GET 1
         public IHttpActionResult GetTeachers(int id)
         {
-            var consulta = db.Teachers.Where(t => t.Id == id).Count();
-            if (consulta > 0)
+            try
             {
-                var regTeach = db.Teachers.Where(t => t.Id == id).FirstOrDefault();
-                return Ok(regTeach);
+                var consulta = db.Teachers.Where(t => t.Id == id).Count();
+                if (consulta > 0)
+                {
+                    var regTeach = db.Teachers.Where(t => t.Id == id).FirstOrDefault();
+                    return Ok(regTeach);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+
+                throw new Exception("Ocurrió un error, intente nuevamente. Detalles del error: " + ex.Message);
             }
+            
         }
 
         // POST
@@ -39,18 +57,27 @@ namespace Alkemy_Challenge.Controllers.Alkemy_Challenge
         [Route("api/admin/teachers/add")]
         public IHttpActionResult PostTeacher(Teachers obj)
         {
-            var consulta = db.Teachers.Where(t => t.First_name == obj.First_name && t.Last_name == obj.Last_name).Count();
-            if (consulta == 0)
+            try
             {
-                obj.Active = true;
-                db.Teachers.Add(obj);
-                db.SaveChanges();
-                return Ok(obj);
+                var consulta = db.Teachers.Where(t => t.First_name == obj.First_name && t.Last_name == obj.Last_name).Count();
+                if (consulta == 0)
+                {
+                    obj.Active = true;
+                    db.Teachers.Add(obj);
+                    db.SaveChanges();
+                    return Ok(obj);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+
+                throw new Exception("Algo salió mal, intente más tarde. Error: " + ex.Message);
             }
+            
         }
 
         // PUT
@@ -58,34 +85,52 @@ namespace Alkemy_Challenge.Controllers.Alkemy_Challenge
         [Route("api/admin/teachers/")]
         public IHttpActionResult PutTeacher(Teachers obj)
         {
-            var consulta = db.Teachers.Where(t => t.Id == obj.Id).FirstOrDefault();
-            consulta.First_name = obj.First_name;
-            consulta.Last_name = obj.Last_name;
-            consulta.DNI = obj.DNI;
-            consulta.Active = obj.Active;
+            try
+            {
+                var consulta = db.Teachers.Where(t => t.Id == obj.Id).FirstOrDefault();
+                consulta.First_name = obj.First_name;
+                consulta.Last_name = obj.Last_name;
+                consulta.DNI = obj.DNI;
+                consulta.Active = obj.Active;
 
-            // acomoda esto bobito
-            db.Entry(consulta).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            return Ok(consulta);
+                // acomoda esto bobito
+                db.Entry(consulta).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Ok(consulta);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocurrió un error, intente nuevamente. Detalles del error: " + ex.Message);
+            }
+            
         }
 
         [HttpDelete]
         [Route("api/admin/teachers/")]
         public IHttpActionResult DelTeacher(int id)
         {
-            var consulta = db.Teachers.Where(t => t.Id == id).Count();
-            if (consulta > 0)
+            try
             {
-                var regTeach = db.Teachers.Where(t => t.Id == id).FirstOrDefault();
-                db.Teachers.Remove(regTeach);
-                db.SaveChanges();
-                return Ok(regTeach);
+                var consulta = db.Teachers.Where(t => t.Id == id).Count();
+                if (consulta > 0)
+                {
+                    var regTeach = db.Teachers.Where(t => t.Id == id).FirstOrDefault();
+                    db.Teachers.Remove(regTeach);
+                    db.SaveChanges();
+                    return Ok(regTeach);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+
+                throw new Exception("Ocurrió un error, intente nuevamente. Detalles del error: " + ex.Message);
             }
+            
 
         }
     }

@@ -6,11 +6,11 @@
       <table class="table table-bordered">
         <thead>
           <tr class="info">
-            <th th scope="col"></th>
-            <th th scope="col">Nombre</th>
-            <th th scope="col">Apellido</th>
-            <th th scope="col">DNI</th>
-            <th th scope="col">Actividad</th>
+            <th th scope="col" [appSort]=teachers data-order="desc" data-name="Id"></th>
+            <th th scope="col" [appSort]=teachers data-order="desc" data-name="First_name">Nombre</th>
+            <th th scope="col" [appSort]=teachers data-order="desc" data-name="Last_name">Apellido</th>
+            <th th scope="col" [appSort]=teachers data-order="desc" data-name="DNI">DNI</th>
+            <th th scope="col" [appSort]=teachers data-order="desc" data-name="Active">Actividad</th>
           </tr>
         </thead>
         <tbody>
